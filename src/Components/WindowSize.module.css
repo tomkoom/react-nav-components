@@ -1,0 +1,13 @@
+.windowSize {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	margin: 24px 0;
+}
+
+.windowSize__badge {
+	padding: 8px;
+	background-color: var(--blueGray50);
+	border-radius: 4px;
+}
