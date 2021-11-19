@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import css from "./Nav.module.css";
+import { NavLink } from "react-router-dom";
 
 import { useWindowSize } from "../useWindowSize";
 import { DeviceSizes } from "../DeviceSizes";
@@ -9,58 +10,69 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
 
 const navLinks = [
-	{ name: "Home", to: "#" },
-	{ name: "About", to: "#" },
-	{ name: "Blog", to: "#" },
-	{ name: "Contact", to: "#" },
+	{ name: "Home", to: "/" },
+	{ name: "About", to: "about" },
+	{ name: "Blog", to: "blog" },
+	{ name: "Contact", to: "contact" },
 ];
 
 const iconTimes = <FontAwesomeIcon icon={faTimes} color="#263238" />;
 const iconBars = <FontAwesomeIcon icon={faBars} color="#263238" />;
 
 const Nav = () => {
-	const [menuBtn, setMenuBtn] = useState(false);
+	const [menuIsOpen, setMenuIsOpen] = useState(false);
 	const [deviceWidth, deviceHeight] = useWindowSize();
 
-	function resetMenuBtn() {
-		if (deviceWidth > DeviceSizes.tablet) {
-			setMenuBtn(false);
+	function resetMenu() {
+		if (deviceWidth > DeviceSizes.laptop) {
+			setMenuIsOpen(false);
 		}
 	}
 
 	useEffect(() => {
-		resetMenuBtn();
+		resetMenu();
 	}, [deviceWidth]);
 
 	return (
 		<nav className={css.nav}>
 			<div className={css.nav__logoContainer}>
 				<h1 className={css.nav__logoContainer__logoTitle}>
-					Responsive Nav
+					ResponsiveNav
 				</h1>
 			</div>
 
 			<div
 				className={css.nav__menuIcon}
-				onClick={() => setMenuBtn(!menuBtn)}
+				onClick={() => setMenuIsOpen(!menuIsOpen)}
 			>
-				{menuBtn ? iconTimes : iconBars}
+				{menuIsOpen ? iconTimes : iconBars}
 			</div>
 
-			<ul
-				className={
-					menuBtn ? `${css.nav__list} ${css.active}` : css.nav__list
-				}
-			>
-				{navLinks.map(({ name, to, i }) => (
-					<li className={css.nav__list__item} key={i}>
-						<a
-							className={css.nav__list__item__link}
-							href={to}
-							rel="noreferrer noopener"
+			<ul className={menuIsOpen ? css.nav__list__active : css.nav__list}>
+				{navLinks.map(({ name, to }, i) => (
+					<li
+						className={css.nav__list__item}
+						key={i}
+						onClick={() => setMenuIsOpen(false)}
+					>
+						<NavLink
+							to={to}
+							// style={}
+							style={({ isActive }) =>
+								isActive
+									? {
+											textDecoration: "none",
+											color: "#263238",
+											boxShadow: "0 2px 0 #263238",
+									  }
+									: {
+											textDecoration: "none",
+											color: "#263238",
+									  }
+							}
 						>
 							{name}
-						</a>
+						</NavLink>
 					</li>
 				))}
 			</ul>

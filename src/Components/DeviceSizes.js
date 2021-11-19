@@ -1,6 +1,8 @@
 export const DeviceSizes = {
-    mobile: 768,
-    tablet: 968,
-    laptop: 1280,
-    desktop: 1980,
+    mobile: 480,
+    tablet: 768,
+    laptop: 1024,
+    desktop: 1200,
 }
+
+// https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/

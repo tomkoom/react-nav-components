@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Karla:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@500;700;900&display=swap");
 
 :root {
 	/* MATERIAL PALLETTE COLORS https://www.materialpalette.com/colors */
@@ -17,7 +17,16 @@
 	/* FONT WEIGHT */
 	--black: 900;
 	--bold: 700;
-	--regular: 400;
+	--medium: 500;
+
+	/* FONT SIZE */
+	--fontSize1: 3.052rem;
+	--fontSize2: 2.441rem;
+	--fontSize3: 1.953rem;
+	--fontSize4: 1.563rem;
+	--fontSize5: 1.25rem;
+	--fontSize6: 1rem;
+	--fontSize7: 0.8rem;
 }
 
 * {
@@ -26,10 +35,14 @@
 	padding: 0;
 }
 
+html {
+	font-size: 18px; /* Root font size */
+}
+
 body {
 	color: #263238;
 	margin: 0;
-	font-family: "Lato", sans-serif;
+	font-family: "Mulish", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -37,4 +50,8 @@ body {
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
+}
+
+.container {
+	padding: 24px;
 }
