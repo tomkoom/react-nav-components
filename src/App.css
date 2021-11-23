@@ -47,6 +47,10 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.App {
+	position: relative;
+}
+
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
@@ -54,4 +58,5 @@ code {
 
 .container {
 	padding: 24px;
+	text-align: center;
 }

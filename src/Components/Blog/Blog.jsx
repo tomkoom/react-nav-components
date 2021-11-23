@@ -5,6 +5,7 @@ const Blog = () => {
 	return (
 		<section className={css.blog}>
 			<h2>Blog</h2>
+			<p>Blog page</p>
 		</section>
 	);
 };

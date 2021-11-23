@@ -6,9 +6,9 @@
 	justify-content: space-between;
 	width: 100%;
 	height: 80px;
-	box-shadow: 0 1px 0 var(--blueGray100);
 	padding: 0 24px;
 	position: relative;
+	background-color: var(--blueGray200);
 }
 
 .nav__list {
@@ -24,7 +24,6 @@
 	font-size: 1.25rem;
 	background-color: var(--blueGray50);
 	cursor: pointer;
-	border-radius: 8px;
 }
 
 .nav__logoContainer__logoTitle {
@@ -48,12 +47,13 @@
 		flex-direction: column;
 		gap: 24px;
 		position: absolute;
-		top: 68px;
+		/* top: 68px; */
+		top: 0;
 		right: 24px;
 		list-style-type: none;
 		padding: 24px 64px 24px 24px;
-		border-radius: 8px;
 		background-color: var(--blueGray100);
+		opacity: 0;
 		z-index: 1;
 	}
 

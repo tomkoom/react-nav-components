@@ -9,6 +9,9 @@ import { DeviceSizes } from "../DeviceSizes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
 
+// FRAMER MOTION
+import { motion, useAnimation } from "framer-motion";
+
 const navLinks = [
 	{ name: "Home", to: "/" },
 	{ name: "About", to: "about" },
@@ -19,9 +22,10 @@ const navLinks = [
 const iconTimes = <FontAwesomeIcon icon={faTimes} color="#263238" />;
 const iconBars = <FontAwesomeIcon icon={faBars} color="#263238" />;
 
-const Nav = () => {
+const Nav = ({ isNav }) => {
 	const [menuIsOpen, setMenuIsOpen] = useState(false);
 	const [deviceWidth, deviceHeight] = useWindowSize();
+	const control = useAnimation();
 
 	function resetMenu() {
 		if (deviceWidth > DeviceSizes.laptop) {
@@ -33,22 +37,42 @@ const Nav = () => {
 		resetMenu();
 	}, [deviceWidth]);
 
+	const animateMenu = () => {
+		control.start({
+			y: 68,
+			transition: { type: "spring", bounce: 0.75 },
+			opacity: 1,
+		});
+	};
+
 	return (
-		<nav className={css.nav}>
-			<div className={css.nav__logoContainer}>
+		<nav
+			className={css.nav}
+			style={isNav === 1 ? null : { display: "none" }}
+		>
+			<motion.div className={css.nav__logoContainer}>
 				<h1 className={css.nav__logoContainer__logoTitle}>
 					ResponsiveNav
 				</h1>
-			</div>
+			</motion.div>
 
-			<div
+			<motion.div
 				className={css.nav__menuIcon}
-				onClick={() => setMenuIsOpen(!menuIsOpen)}
+				onClick={() => {
+					setMenuIsOpen(!menuIsOpen);
+					animateMenu();
+				}}
+				whileTap={{ scale: 0.9 }}
 			>
 				{menuIsOpen ? iconTimes : iconBars}
-			</div>
+			</motion.div>
 
-			<ul className={menuIsOpen ? css.nav__list__active : css.nav__list}>
+			<motion.ul
+				className={menuIsOpen ? css.nav__list__active : css.nav__list}
+				initial={{ opacity: 0, y: 0, x: 0 }}
+				animate={control}
+				exit={{ y: "100vh", opacity: 0 }}
+			>
 				{navLinks.map(({ name, to }, i) => (
 					<li
 						className={css.nav__list__item}
@@ -57,7 +81,6 @@ const Nav = () => {
 					>
 						<NavLink
 							to={to}
-							// style={}
 							style={({ isActive }) =>
 								isActive
 									? {
@@ -75,7 +98,7 @@ const Nav = () => {
 						</NavLink>
 					</li>
 				))}
-			</ul>
+			</motion.ul>
 		</nav>
 	);
 };
