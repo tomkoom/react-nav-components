@@ -69,7 +69,7 @@ const Nav = ({ isNav }) => {
 
 			<motion.ul
 				className={menuIsOpen ? css.nav__list__active : css.nav__list}
-				initial={{ opacity: 0, y: 0, x: 0 }}
+				initial={{ y: 0, x: 0 }}
 				animate={control}
 				exit={{ y: "100vh", opacity: 0 }}
 			>

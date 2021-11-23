@@ -28,7 +28,7 @@ const Nav3 = ({ isNav }) => {
 			className={css.nav4}
 			style={isNav === 4 ? null : { display: "none" }}
 		>
-			456
+			ResponsiveNav4
 		</nav>
 	);
 };
