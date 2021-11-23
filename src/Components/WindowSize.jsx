@@ -11,6 +11,7 @@ const WindowSize = () => {
 					{deviceWidth}px x {deviceHeight}px
 				</p>
 			</div>
+			<p>Breakpoint: 1024px</p>
 		</section>
 	);
 };

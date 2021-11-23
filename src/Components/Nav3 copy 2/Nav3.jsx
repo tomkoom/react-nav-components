@@ -19,74 +19,54 @@ const navLinks = [
 	{ name: "Contact", to: "contact" },
 ];
 
+const itemVariants = {
+	closed: { opacity: 0 },
+	open: { opacity: 1 },
+};
+
 const iconTimes = <FontAwesomeIcon icon={faTimes} color="#263238" />;
 const iconBars = <FontAwesomeIcon icon={faBars} color="#263238" />;
 
 const Nav3 = ({ isNav }) => {
 	const [open, cycleOpen] = useCycle(false, true);
-	const [deviceWidth, deviceHeight] = useWindowSize();
+	console.log(open);
 
 	return (
 		<nav
 			className={css.nav3}
 			style={isNav === 3 ? null : { display: "none" }}
 		>
-			<h1 className={css.nav3__logo}>ResponsiveNav3</h1>
+			<div className={css.nav3__logoContainer}>
+				<h1 className={css.nav3__logoContainer__logoTitle}>
+					ResponsiveNav3
+				</h1>
+			</div>
 
-			{/* MENU BUTTON */}
-			<motion.button
-				whileTap={{ scale: 0.9 }}
-				className={css.nav3__menuBtn}
-				onClick={cycleOpen}
-			>
-				{open ? iconTimes : iconBars}
-			</motion.button>
-
-			{/* MENU */}
-			{deviceWidth > DeviceSizes.laptop ? (
-				<div className={css.nav3__menu}>
-					{navLinks.map((l, i) => (
-						<NavLink
-							to={l.to}
-							key={i}
-							className={css.nav3__menu__item}
-							style={({ isActive }) =>
-								isActive
-									? {
-											boxShadow: "0 2px 0 #263238",
-									  }
-									: null
-							}
-						>
-							{l.name}
-						</NavLink>
-					))}
-				</div>
-			) : (
-				// SIDE MENU
-				<AnimatePresence>
-					{open ? (
-						<motion.div
-							className={`${css.nav3__menu} ${css.side}`}
-							initial={{ x: "100%" }}
-							animate={{
-								x: 0,
-							}}
-							exit={{
-								x: "100%",
-							}}
-							transition={{
-								type: "spring",
-								bounce: 0,
-								duration: 0.4,
-							}}
-						>
+			<AnimatePresence>
+				{open ? (
+					<motion.div
+						className={css.nav3__sideMenu}
+						initial={{ x: "100%" }}
+						animate={{
+							x: 0,
+						}}
+						exit={{
+							x: "100%",
+						}}
+						transition={{
+							type: "spring",
+							bounce: 0,
+							duration: 0.4,
+						}}
+					>
+						<div className={css.nav3__sideMenu__navLinks}>
 							{navLinks.map((l, i) => (
 								<NavLink
 									to={l.to}
 									key={i}
-									onClick={() => cycleOpen(!open)}
-									className={css.nav3__menu__item}
+									className={
+										css.nav3__sideMenu__navLinks__item
+									}
 									style={({ isActive }) =>
 										isActive
 											? {
@@ -99,10 +79,23 @@ const Nav3 = ({ isNav }) => {
 									{l.name}
 								</NavLink>
 							))}
-						</motion.div>
-					) : null}
-				</AnimatePresence>
-			)}
+						</div>
+					</motion.div>
+				) : null}
+			</AnimatePresence>
+
+			{/* MENU BUTTON */}
+			<motion.div
+				className={css.nav3__btnContainer}
+				whileTap={{ scale: 0.9 }}
+			>
+				<button
+					className={css.nav3__btnContainer__btn}
+					onClick={cycleOpen}
+				>
+					{open ? iconTimes : iconBars}
+				</button>
+			</motion.div>
 		</nav>
 	);
 };

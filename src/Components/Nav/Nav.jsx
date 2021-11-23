@@ -25,7 +25,6 @@ const iconBars = <FontAwesomeIcon icon={faBars} color="#263238" />;
 const Nav = ({ isNav }) => {
 	const [menuIsOpen, setMenuIsOpen] = useState(false);
 	const [deviceWidth, deviceHeight] = useWindowSize();
-	const control = useAnimation();
 
 	function resetMenu() {
 		if (deviceWidth > DeviceSizes.laptop) {
@@ -36,14 +35,6 @@ const Nav = ({ isNav }) => {
 	useEffect(() => {
 		resetMenu();
 	}, [deviceWidth]);
-
-	const animateMenu = () => {
-		control.start({
-			y: 68,
-			transition: { type: "spring", bounce: 0.75 },
-			opacity: 1,
-		});
-	};
 
 	return (
 		<nav
@@ -60,18 +51,14 @@ const Nav = ({ isNav }) => {
 				className={css.nav__menuIcon}
 				onClick={() => {
 					setMenuIsOpen(!menuIsOpen);
-					animateMenu();
 				}}
 				whileTap={{ scale: 0.9 }}
 			>
 				{menuIsOpen ? iconTimes : iconBars}
 			</motion.div>
 
-			<motion.ul
+			<ul
 				className={menuIsOpen ? css.nav__list__active : css.nav__list}
-				initial={{ y: 0, x: 0 }}
-				animate={control}
-				exit={{ y: "100vh", opacity: 0 }}
 			>
 				{navLinks.map(({ name, to }, i) => (
 					<li
@@ -98,7 +85,7 @@ const Nav = ({ isNav }) => {
 						</NavLink>
 					</li>
 				))}
-			</motion.ul>
+			</ul>
 		</nav>
 	);
 };

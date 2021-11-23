@@ -27,7 +27,7 @@
 }
 
 .nav__logoContainer__logoTitle {
-	font-size: 1.1rem;
+	font-size: var(--fontSize6);
 	font-weight: var(--black);
 }
 
@@ -47,13 +47,12 @@
 		flex-direction: column;
 		gap: 24px;
 		position: absolute;
-		/* top: 68px; */
-		top: 0;
+		top: 68px;
 		right: 24px;
 		list-style-type: none;
 		padding: 24px 64px 24px 24px;
 		background-color: var(--blueGray100);
-		opacity: 0;
+		opacity: 1;
 		z-index: 1;
 	}
 
