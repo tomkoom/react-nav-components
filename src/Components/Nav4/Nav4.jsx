@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
 
 // FRAMER MOTION
-import { AnimatePresence, motion, useAnimation, useCycle } from "framer-motion";
+import { AnimatePresence, motion, useCycle } from "framer-motion";
 
 const navLinks = [
 	{ name: "Home", to: "/" },

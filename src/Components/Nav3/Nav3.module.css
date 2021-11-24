@@ -9,21 +9,12 @@
 	background-color: var(--blueGray200);
 }
 
-.nav3__logo {
-	font-size: var(--fontSize6);
+.nav3__logoContainer__logoTitle {
+	font-size: 1.1rem;
 	font-weight: var(--black);
 }
 
-.nav3__menu {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-}
-
-.side {
-	align-items: flex-start;
-	flex-direction: column;
-	padding: 96px 24px 24px 32px;
+.nav3__sideMenu {
 	background-color: var(--blueGray100);
 	width: 240px;
 	height: 100vh;
@@ -32,26 +23,44 @@
 	right: 0;
 }
 
-.nav3__menu__item {
+.nav3__sideMenu__navLinks {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	gap: 12px;
+	padding: 120px 24px 24px 32px;
+}
+
+.nav3__sideMenu__navLinks__item {
+	display: inline-block;
 	text-decoration: none;
-	font-size: var(--fontSize6);
+	font-size: var(--fontSize5);
 	color: var(--blueGray900);
 }
 
-.nav3__menuBtn {
-	display: none;
+.nav3__btnContainer {
+	position: absolute;
+	top: 20px;
+	right: 24px;
+	z-index: 1;
 }
 
-@media screen and (max-width: 1024px) {
-	.nav3__menuBtn {
-		width: 40px;
-		height: 40px;
-		display: grid;
-		place-items: center;
-		font-size: var(--fontSize5);
-		border: none;
-		cursor: pointer;
-		background-color: var(--blueGray50);
-		z-index: 1;
-	}
+.nav3__btnContainer__btn {
+	width: 40px;
+	height: 40px;
+	display: grid;
+	place-items: center;
+	font-size: var(--fontSize5);
+	border: none;
+	cursor: pointer;
+	background-color: var(--blueGray50);
+}
+
+.container a {
+	color: var(--blueGray50);
+	text-decoration: none;
+	font-size: 1.75rem;
+	font-weight: 600;
+	display: block;
+	margin: 20px;
 }

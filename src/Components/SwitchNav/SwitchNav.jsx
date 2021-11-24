@@ -12,20 +12,22 @@ const SwitchNav = ({ setIsNav }) => {
 			>
 				Nav
 			</motion.button>
+
 			<motion.button
+				className={css.switchnav__btn}
+				onClick={() => setIsNav(2)}
+				whileTap={{ scale: 0.9 }}
+			>
+				Nav2
+			</motion.button>
+
+			{/* <motion.button
 				className={css.switchnav__btn}
 				onClick={() => setIsNav(3)}
 				whileTap={{ scale: 0.9 }}
 			>
 				Nav3
-			</motion.button>
-			<motion.button
-				className={css.switchnav__btn}
-				onClick={() => setIsNav(4)}
-				whileTap={{ scale: 0.9 }}
-			>
-				Nav4
-			</motion.button>
+			</motion.button> */}
 		</div>
 	);
 };

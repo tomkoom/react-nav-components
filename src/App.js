@@ -8,8 +8,8 @@ import About from "./Components/About/About"
 import Blog from "./Components/Blog/Blog"
 import Contact from "./Components/Contact/Contact"
 import SwitchNav from "./Components/SwitchNav/SwitchNav";
+import Nav2 from "./Components/Nav2/Nav2";
 import Nav3 from "./Components/Nav3/Nav3";
-import Nav4 from "./Components/Nav4/Nav4";
 
 function App() {
   const [isNav, setIsNav] = useState(1);
@@ -17,8 +17,8 @@ function App() {
   return (
     <div className="App">
       <Nav isNav={isNav} />
-      <Nav3 isNav={isNav} />
-      <Nav4 isNav={isNav} />
+      <Nav2 isNav={isNav} />
+      {/* <Nav3 isNav={isNav} /> */}
       <WindowSize />
       <SwitchNav setIsNav={setIsNav} />
       <div className="container">

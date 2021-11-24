@@ -8,9 +8,10 @@ import { DeviceSizes } from "../DeviceSizes";
 // FONTAWESOME
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 // FRAMER MOTION
-import { motion, useAnimation } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const navLinks = [
 	{ name: "Home", to: "/" },
@@ -21,6 +22,7 @@ const navLinks = [
 
 const iconTimes = <FontAwesomeIcon icon={faTimes} color="#263238" />;
 const iconBars = <FontAwesomeIcon icon={faBars} color="#263238" />;
+const iconGithub = <FontAwesomeIcon icon={faGithub} />;
 
 const Nav = ({ isNav }) => {
 	const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -36,19 +38,48 @@ const Nav = ({ isNav }) => {
 		resetMenu();
 	}, [deviceWidth]);
 
+	const menuVariants = {
+		initial: { y: "-50%", opacity: 0 },
+		animate: {
+			y: 0,
+			opacity: 1,
+			transition: {
+				type: "spring",
+				stiffness: 200,
+				mass: 0.33,
+				// duration: 0.2,
+			},
+		},
+		exit: {
+			y: "-100%",
+			opacity: 0,
+			transition: {
+				type: "easeIn",
+			},
+		},
+	};
+
 	return (
 		<nav
 			className={css.nav}
 			style={isNav === 1 ? null : { display: "none" }}
 		>
-			<motion.div className={css.nav__logoContainer}>
-				<h1 className={css.nav__logoContainer__logoTitle}>
-					ResponsiveNav
-				</h1>
-			</motion.div>
+			{/* LOGO */}
+			<div className={css.nav__logoContainer}>
+				<h1 className={css.nav__logoContainer__logo}>ResponsiveNav</h1>
+				<a
+					className={css.nav__logoContainer__link}
+					href="https://github.com/tomkoom/react-responsive-nav2"
+					target="_blank"
+					rel="norefferer noopener"
+				>
+					{iconGithub}
+				</a>
+			</div>
 
+			{/* MENU BTN */}
 			<motion.div
-				className={css.nav__menuIcon}
+				className={css.nav__menuBtn}
 				onClick={() => {
 					setMenuIsOpen(!menuIsOpen);
 				}}
@@ -57,35 +88,63 @@ const Nav = ({ isNav }) => {
 				{menuIsOpen ? iconTimes : iconBars}
 			</motion.div>
 
-			<ul
-				className={menuIsOpen ? css.nav__list__active : css.nav__list}
-			>
-				{navLinks.map(({ name, to }, i) => (
-					<li
-						className={css.nav__list__item}
-						key={i}
-						onClick={() => setMenuIsOpen(false)}
-					>
-						<NavLink
-							to={to}
-							style={({ isActive }) =>
-								isActive
-									? {
-											textDecoration: "none",
-											color: "#263238",
-											boxShadow: "0 2px 0 #263238",
-									  }
-									: {
-											textDecoration: "none",
-											color: "#263238",
-									  }
-							}
+			{/* MENU */}
+			{deviceWidth > DeviceSizes.laptop ? (
+				<div className={css.nav__list}>
+					{navLinks.map(({ name, to }, i) => (
+						<li className={css.nav__list__item} key={i}>
+							<NavLink
+								className={css.nav__list__item__link}
+								to={to}
+								style={({ isActive }) =>
+									isActive
+										? {
+												boxShadow: "0 2px 0 #263238",
+										  }
+										: null
+								}
+							>
+								{name}
+							</NavLink>
+						</li>
+					))}
+				</div>
+			) : (
+				<AnimatePresence>
+					{menuIsOpen ? (
+						<motion.ul
+							className={css.nav__list__active}
+							variants={menuVariants}
+							initial="initial"
+							animate="animate"
+							exit="exit"
 						>
-							{name}
-						</NavLink>
-					</li>
-				))}
-			</ul>
+							{navLinks.map(({ name, to }, i) => (
+								<li
+									className={css.nav__list__item}
+									key={i}
+									onClick={() => setMenuIsOpen(false)}
+								>
+									<NavLink
+										className={css.nav__list__item__link}
+										to={to}
+										style={({ isActive }) =>
+											isActive
+												? {
+														boxShadow:
+															"0 2px 0 #263238",
+												  }
+												: null
+										}
+									>
+										{name}
+									</NavLink>
+								</li>
+							))}
+						</motion.ul>
+					) : null}
+				</AnimatePresence>
+			)}
 		</nav>
 	);
 };

@@ -4,11 +4,25 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 100%;
 	height: 80px;
 	padding: 0 24px;
-	position: relative;
 	background-color: var(--blueGray200);
+}
+
+.nav__logoContainer {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.nav__logoContainer__logo {
+	font-size: var(--fontSize6);
+	font-weight: var(--black);
+}
+
+.nav__logoContainer__link {
+	font-size: var(--fontSize5);
+	color: var(--blueGray700);
 }
 
 .nav__list {
@@ -17,47 +31,37 @@
 	list-style-type: none;
 }
 
-.nav__menuIcon {
-	display: none;
-	width: 40px;
-	height: 40px;
-	font-size: 1.25rem;
-	background-color: var(--blueGray50);
-	cursor: pointer;
-}
-
-.nav__logoContainer__logoTitle {
-	font-size: var(--fontSize6);
-	font-weight: var(--black);
-}
-
 .nav__list__item__link {
 	color: var(--blueGray900);
 	text-decoration: none;
-	font-weight: bold;
+}
+
+.nav__list__active {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	position: fixed;
+	top: 68px;
+	right: 24px;
+	list-style-type: none;
+	padding: 24px;
+	width: 160px;
+	z-index: 1;
+	background-color: var(--blueGray100);
+}
+
+.nav__menuBtn {
+	display: none;
 }
 
 @media screen and (max-width: 1024px) {
-	.nav__list {
-		display: none;
-	}
-
-	.nav__list__active {
-		display: flex;
-		flex-direction: column;
-		gap: 24px;
-		position: absolute;
-		top: 68px;
-		right: 24px;
-		list-style-type: none;
-		padding: 24px 64px 24px 24px;
-		background-color: var(--blueGray100);
-		opacity: 1;
-		z-index: 1;
-	}
-
-	.nav__menuIcon {
+	.nav__menuBtn {
 		display: grid;
 		place-items: center;
+		width: 40px;
+		height: 40px;
+		font-size: 1.25rem;
+		background-color: var(--blueGray50);
+		cursor: pointer;
 	}
 }
